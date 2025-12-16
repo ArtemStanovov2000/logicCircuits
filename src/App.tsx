@@ -1,7 +1,11 @@
+import LogicCircuits from "./LogicCircuits"
+
 function App() {
 
   return (
-    <div></div>
+    <div>
+      <LogicCircuits/>
+    </div>
   )
 }
 
