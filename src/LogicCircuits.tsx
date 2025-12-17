@@ -1,5 +1,6 @@
 import type { FC } from "react"
 import { useRef, useEffect } from "react"
+import { render } from "./render/render"
 
 const LogicCircuits: FC = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -17,7 +18,7 @@ const LogicCircuits: FC = () => {
 
         const animate = () => {
             if (ctx) {
-                //render(ctx, canvas.width, canvas.height)
+                render(ctx, canvas.width, canvas.height)
             }
             animationFrameRef.current = requestAnimationFrame(animate)
         }
@@ -51,7 +52,7 @@ const LogicCircuits: FC = () => {
                 display: 'block',
                 width: '100vw',
                 height: '100vh',
-                backgroundColor: '#0e0e0eff',
+                backgroundColor: '#f3f3f3ff',
             }}
         />
     )
