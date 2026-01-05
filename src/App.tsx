@@ -1,4 +1,4 @@
-import LogicCircuits from "./LogicCircuits"
+import LogicCircuits from "./components/LogicCircuits"
 
 function App() {
 
