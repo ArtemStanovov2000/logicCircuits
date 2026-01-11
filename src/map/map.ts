@@ -2,17 +2,7 @@ import { HEIGHT, WIDTH } from "../consts/mapConfig"
 import type { Substrate, Source, TemporaryArray } from "../types/materials"
 
 export const substrateLayer: Substrate[][] = []
-export const sources: Source[] = []
 export const temporaryArray: TemporaryArray[] = []
-
-sources.push({
-    type: "source",
-    value: 0,
-    id: {
-        row: 35,
-        column: 0,
-    }
-})
 
 for (let i = 0; i < WIDTH; i++) {
     const row: Substrate[] = []
@@ -52,4 +42,13 @@ substrateLayer[35][50] = {
 substrateLayer[35][51] = {
     type: "p_si",
     value: false,
+}
+
+substrateLayer[35][0] = {
+    type: "source",
+    value: 0,
+    id: {
+        row: 35,
+        column: 0,
+    }
 }

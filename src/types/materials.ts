@@ -25,5 +25,5 @@ export type Source = {
   }
 }
 
-export type Substrate = Si | Metal | P_si
+export type Substrate = Si | Metal | P_si | Source
 export type TemporaryArray = Metal | P_si | Source
