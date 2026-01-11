@@ -1,168 +1,55 @@
-import type { MapCell } from "../types/MapCell"
+import { HEIGHT, WIDTH } from "../consts/mapConfig"
+import type { Substrate, Source, TemporaryArray } from "../types/materials"
 
-export const map: MapCell[][] = []
+export const substrateLayer: Substrate[][] = []
+export const sources: Source[] = []
+export const temporaryArray: TemporaryArray[] = []
 
-const WIDTH = 100
-const HEIGHT = 100
+sources.push({
+    type: "source",
+    value: 0,
+    id: {
+        row: 35,
+        column: 0,
+    }
+})
 
 for (let i = 0; i < WIDTH; i++) {
-    const row: MapCell[] = []
+    const row: Substrate[] = []
     for (let j = 0; j < HEIGHT; j++) {
-        row.push(null)
+        row.push({
+            type: "si"
+        })
     }
-    map.push(row)
+    substrateLayer.push(row)
 }
 
-map[1][3] = {
-    type: 'contact',
-    id: { row: 1, column: 3 },
-    isActive: true,
-    controlledBy: {
-        connection: [],
-    }
-}
-
-map[1][5] = {
-    type: 'contact',
-    id: { row: 1, column: 5 },
-    isActive: false,
-    controlledBy: {
-        connection: [],
+// Заполнение слоя субстрата
+for (let i = 0; i < WIDTH; i++) {
+    substrateLayer[35][i] = {
+        type: "metal",
+        value: 0,
     }
 }
 
-map[1][2] = {
-    type: 'contact',
-    id: { row: 1, column: 2 },
-    isActive: false,
-    controlledBy: {
-        connection: [],
+for (let i = 36; i < HEIGHT; i++) {
+    substrateLayer[i][20] = {
+        type: "metal",
+        value: 0,
     }
 }
 
-map[3][2] = {
-    type: "transistor-open",
-    drain: false,
-    source: false,
-    base: false,
-    orientation: "down",
-    id: { row: 3, column: 2 },
-    controlledBy: {
-        base: [],
-        source: []
-    }
+substrateLayer[35][49] = {
+    type: "p_si",
+    value: false,
 }
 
-map[3][5] = {
-    type: "transistor-open",
-    drain: false,
-    source: false,
-    base: false,
-    orientation: "down",
-    id: { row: 3, column: 5 },
-    controlledBy: {
-        base: [],
-        source: []
-    }
+substrateLayer[35][50] = {
+    type: "p_si",
+    value: false,
 }
 
-map[5][2] = {
-    type: "transistor-close",
-    drain: false,
-    source: false,
-    base: false,
-    orientation: "down",
-    id: { row: 5, column: 2 },
-    controlledBy: {
-        base: [],
-        source: []
-    }
-}
-
-map[5][3] = {
-    type: "transistor-close",
-    drain: false,
-    source: false,
-    base: false,
-    orientation: "down",
-    id: { row: 5, column: 3 },
-    controlledBy: {
-        base: [],
-        source: []
-    }
-}
-
-map[5][4] = {
-    type: "transistor-close",
-    drain: false,
-    source: false,
-    base: false,
-    orientation: "down",
-    id: { row: 5, column: 4 },
-    controlledBy: {
-        base: [],
-        source: []
-    }
-}
-
-map[5][5] = {
-    type: "transistor-close",
-    drain: false,
-    source: false,
-    base: false,
-    orientation: "down",
-    id: { row: 5, column: 5 },
-    controlledBy: {
-        base: [],
-        source: []
-    }
-}
-
-
-map[7][3] = {
-    type: "transistor-close",
-    drain: false,
-    source: false,
-    base: false,
-    orientation: "down",
-    id: { row: 7, column: 3 },
-    controlledBy: {
-        base: [],
-        source: []
-    }
-}
-
-map[7][4] = {
-    type: "transistor-close",
-    drain: false,
-    source: false,
-    base: false,
-    orientation: "down",
-    id: { row: 7, column: 4 },
-    controlledBy: {
-        base: [],
-        source: []
-    }
-}
-
-map[9][4] = {
-    type: "transistor-open",
-    drain: false,
-    source: false,
-    base: false,
-    orientation: "down",
-    id: { row: 9, column: 4 },
-    controlledBy: {
-        base: [],
-        source: []
-    }
-}
-
-map[11][4] = {
-    type: 'output',
-    id: { row: 11, column: 4 },
-    isActive: false,
-    controlledBy: {
-        connection: [],
-    }
+substrateLayer[35][51] = {
+    type: "p_si",
+    value: false,
 }
