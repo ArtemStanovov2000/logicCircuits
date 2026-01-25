@@ -1,8 +1,9 @@
-import { MAX_VALUE, MIN_VALUE } from "../consts/mapConfig";
-import { drawingSourses } from "../drawing/drawingSources";
+import { MAX_VALUE, NEUTRAL_VALUE } from "../consts/mapConfig";
 import { drawingSubstrateLayer } from "../drawing/substrateLayer";
 import { updatePotentials } from "../logic/potentialSystem";
-import {substrateLayer, temporaryArray } from "../map/map";
+import { substrateLayer, temporaryArrayContact } from "../map/map";
+
+let count = 0
 
 export const render = (
     ctx: CanvasRenderingContext2D,
@@ -16,17 +17,24 @@ export const render = (
         drawingSubstrateLayer(ctx, substrateLayer);
     }
 
-    if (Math.random() > 0.98) {
-        temporaryArray.push({
-            type: "source",
-            value: MAX_VALUE,
-            id: {
-                row: 35,
-                column: 0,
-            }
-        })
+    if (count === 100) {
+        temporaryArrayContact.push({ type: "contact", label: "A1", value: MAX_VALUE })
     }
 
-    console.log(substrateLayer[35][0])
+    if (count === 150) {
+        temporaryArrayContact.push({ type: "contact", label: "A2", value: MAX_VALUE })
+    }
+
+    if (count === 300) {
+        temporaryArrayContact.push({ type: "contact", label: "A1", value: NEUTRAL_VALUE })
+    }
+
+    if (count === 360) {
+        temporaryArrayContact.push({ type: "contact", label: "A2", value: NEUTRAL_VALUE })
+    }
+
+    count++
+    console.time()
     updatePotentials();
+    console.timeEnd()
 };

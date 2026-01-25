@@ -25,10 +25,18 @@ export const drawingSubstrateLayer = (
           break;
 
         case "p_si":
-          if (cell.value) {
+          if (cell.value > 0) {
             ctx.fillStyle = "#2c2cff";
           } else {
             ctx.fillStyle = "#000080";
+          }
+          break;
+
+        case "source":
+          if (cell.value > 0) {
+            ctx.fillStyle = "#94ffa2";
+          } else {
+            ctx.fillStyle = "#009213";
           }
           break;
 
