@@ -142,6 +142,12 @@ export const updatePotentials = () => {
                         });
                     }
                 }
+            } else if (
+                substrateLayer[neighborRow] &&
+                substrateLayer[neighborRow][neighborCol] &&
+                substrateLayer[neighborRow][neighborCol].type === "metalProvider"
+            ) {
+
             }
         }
     }

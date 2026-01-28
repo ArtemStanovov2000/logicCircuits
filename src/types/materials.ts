@@ -48,7 +48,7 @@ export type Contacts = {
   }
 }
 
-export type Substrate = Si | Metal | P_si | Source
+export type Substrate = Si | Metal | P_si | Source | MetalProvider
 
 export type TemporaryArrayContact =
   {
