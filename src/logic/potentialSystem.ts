@@ -1,5 +1,5 @@
 import { NEUTRAL_VALUE } from "../consts/mapConfig";
-import { substrateLayer, temporaryArrayContact, sourseArray, temporaryArray } from "../map/map";
+import { substrateLayer, temporaryArrayContact, sourseArray, temporaryArray, metalLayer } from "../map/map";
 
 // Создаем массив направлений для проверки соседей
 const directions = [

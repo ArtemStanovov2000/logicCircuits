@@ -1,7 +1,7 @@
 import { MAX_VALUE, NEUTRAL_VALUE } from "../consts/mapConfig";
 import { drawingSubstrateLayer } from "../drawing/substrateLayer";
 import { updatePotentials } from "../logic/potentialSystem";
-import { substrateLayer, temporaryArrayContact } from "../map/map";
+import { metalLayer, substrateLayer, temporaryArrayContact } from "../map/map";
 
 let count = 0
 
@@ -15,6 +15,10 @@ export const render = (
 
     if (activeLayers === "substrate") {
         drawingSubstrateLayer(ctx, substrateLayer);
+    }
+
+    if (activeLayers === "base") {
+        drawingSubstrateLayer(ctx, metalLayer);
     }
 
     if (count === 100) {

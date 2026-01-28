@@ -1,6 +1,7 @@
 import { HEIGHT, WIDTH } from "../consts/mapConfig"
 import type { Substrate, ContactsForArray, TemporaryArrayContact, TemporaryArray } from "../types/materials"
 
+export const metalLayer: Substrate[][] = []
 export const substrateLayer: Substrate[][] = []
 export const sourseArray: ContactsForArray[] = []
 export const temporaryArrayContact: TemporaryArrayContact[] = []
@@ -15,6 +16,17 @@ for (let i = 0; i < WIDTH; i++) {
     }
     substrateLayer.push(row)
 }
+
+for (let i = 0; i < WIDTH; i++) {
+    const row: Substrate[] = []
+    for (let j = 0; j < HEIGHT; j++) {
+        row.push({
+            type: "si"
+        })
+    }
+    metalLayer.push(row)
+}
+
 
 // Заполнение слоя субстрата
 for (let i = 0; i < WIDTH; i++) {

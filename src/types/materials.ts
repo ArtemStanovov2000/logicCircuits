@@ -17,6 +17,16 @@ export type Metal = {
   }
 }
 
+export type MetalProvider = {
+  type: "metalProvider";
+  value: number,
+  dependencies: string[]
+  id?: {
+    row: number
+    column: number
+  }
+}
+
 export type Source = {
   type: "source";
   value: number
