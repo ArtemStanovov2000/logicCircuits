@@ -33,7 +33,7 @@ const LogicCircuits: FC = () => {
 
         const animate = () => {
             if (ctx) {
-                render(ctx, canvas.width, canvas.height, activeLayers)
+                render(ctx, canvas.width, canvas.height)
             }
             animationFrameRef.current = requestAnimationFrame(animate)
         }
@@ -43,7 +43,7 @@ const LogicCircuits: FC = () => {
         const handleResize = () => {
             updateCanvasSize()
             if (ctx) {
-                render(ctx, canvas.width, canvas.height, activeLayers)
+                render(ctx, canvas.width, canvas.height)
             }
         }
 

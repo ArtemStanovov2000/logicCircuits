@@ -1,6 +1,5 @@
+import { drawingSubstrateLayer } from "../drawing/substrateLayer";
 import { updatePotentials } from "../logic/potentialSystem";
-
-let count = 0
 
 export const render = (
     ctx: CanvasRenderingContext2D,
@@ -9,8 +8,7 @@ export const render = (
 ) => {
     ctx.clearRect(0, 0, width, height)
 
-    count++
-    console.time()
+    drawingSubstrateLayer(ctx)
+
     updatePotentials();
-    console.timeEnd()
 };
