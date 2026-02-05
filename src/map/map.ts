@@ -13,7 +13,7 @@ export const source: {
 }[] = [
         {
             label: "A1",
-            flag: true,
+            flag: false,
             id: {
                 row: 20,
                 column: 0,
