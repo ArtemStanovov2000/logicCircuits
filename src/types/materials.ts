@@ -1,4 +1,4 @@
-type Id = {
+export type Id = {
   row: number
   column: number
   layer: number

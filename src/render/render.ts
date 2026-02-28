@@ -13,15 +13,15 @@ export const render = (
 
     drawingSubstrateLayer(ctx)
 
-    if (count === 50) {
+    if (count === 100) {
         setSourseState([{label: "A1", value: true}])
     }
 
-    if (count === 60) {
+    if (count === 120) {
         setSourseState([{label: "A2", value: true}, {label: "A1", value: false}])
     }
 
-    if (count === 100) {
+    if (count === 200) {
         setSourseState([{label: "A2", value: false}])
     }
 
