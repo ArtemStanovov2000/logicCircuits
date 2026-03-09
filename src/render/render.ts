@@ -1,5 +1,5 @@
 import { drawingSubstrateLayer } from "../drawing/substrateLayer";
-import { updatePotentials } from "../logic/potentialSystem";
+import { updateSourceElement } from "../logic/potentialSystem";
 import { setSourseState } from "../logic/setSourseState";
 
 let count = 0
@@ -14,18 +14,18 @@ export const render = (
     drawingSubstrateLayer(ctx)
 
     if (count === 100) {
-        setSourseState([{label: "A1", value: true}])
+        setSourseState([{ label: "A1", value: 200 }])
     }
 
     if (count === 120) {
-        setSourseState([{label: "A2", value: true}, {label: "A1", value: false}])
+        setSourseState([{ label: "A2", value: 200 }, { label: "A1", value: 0 }])
     }
 
     if (count === 200) {
-        setSourseState([{label: "A2", value: false}])
+        setSourseState([{ label: "A2", value: 0 }])
     }
 
-    updatePotentials();
+    updateSourceElement();
 
-    count++
+    count = count + 1
 };

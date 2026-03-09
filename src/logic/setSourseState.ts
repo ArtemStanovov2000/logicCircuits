@@ -2,7 +2,7 @@ import { source, arrRAM } from "../map/map"
 
 export type SourceArr = {
     label: string,
-    value: boolean
+    value: number
 }
 
 export const setSourseState = (sourceArr: SourceArr[]) => {
@@ -12,10 +12,11 @@ export const setSourseState = (sourceArr: SourceArr[]) => {
         if (sourceItem) {
             arrRAM.push({
                 type: "source",
-                flag: sourceItem.flag,
-                id: sourceItem.id
+                value: updateItem.value,
+                id: sourceItem.id,
+                label: sourceItem.label
             })
-            sourceItem.flag = updateItem.value
+            sourceItem.value = updateItem.value
         }
     })
 }
