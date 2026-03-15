@@ -12,9 +12,9 @@ const directions = [
 ];
 
 export const updateSourceElement = () => {
-    const currentStepArr: { neighbourId: Id, localElementParam: { value: number, sourceLabel: string }[] }[] = [];
+    const currentStepArr: { neighbourId: Id, localElementParam: { value: number, sourceLabel: string }[], id: Id }[] = [];
 
-    // Обрабатываем элементы arrMetalRAM (теперь localElementParam — массив)
+    // Обрабатываем элементы arrMetalRAM
     for (let i = arrMetalRAM.length - 1; i >= 0; i--) {
         const localElement = arrMetalRAM[i];
         const neighbour = localElement.neighbourId;
@@ -24,42 +24,47 @@ export const updateSourceElement = () => {
 
         const currentElement = layer[neighbourElement.index];
 
-        // Перебираем все параметры для данного соседа
-        for (const param of localElement.localElementParam) {
-            const existingDepIndex = currentElement.dependencies.findIndex(dep => dep.sourceLabel === param.sourceLabel);
-            if (existingDepIndex !== -1) {
-                // Обновляем существующую зависимость
-                currentElement.dependencies[existingDepIndex].value = param.value;
-            } else {
-                // Добавляем новую зависимость
-                currentElement.dependencies.push({
-                    value: param.value,
-                    sourceLabel: param.sourceLabel
-                });
+        if (currentElement.type === "metal") {
+            // Перебираем все параметры для данного соседа
+            for (const param of localElement.localElementParam) {
+                const existingDepIndex = currentElement.dependencies.findIndex(dep => dep.sourceLabel === param.sourceLabel);
+                if (existingDepIndex !== -1) {
+                    // Обновляем существующую зависимость
+                    currentElement.dependencies[existingDepIndex].value = param.value;
+                } else {
+                    // Добавляем новую зависимость
+                    currentElement.dependencies.push({
+                        value: param.value,
+                        sourceLabel: param.sourceLabel
+                    });
+                }
             }
-        }
-        arrMetalRAM.splice(i, 1);
+            arrMetalRAM.splice(i, 1);
 
-        for (let j = 0; j < directions.length; j++) { // Пройдемся по всем направлениям 
-            const row = currentElement.id.row + directions[j].row
-            const col = currentElement.id.column + directions[j].col
-            const lay = currentElement.id.layer + directions[j].lay
 
-            const neighbourElement = routerArray.get(`${row},${col},${lay}`)
-            if (neighbourElement) {
-                const nextNeighbour = layer[neighbourElement.index]
-                const neighbourDepList = nextNeighbour.dependencies
-                const depIndex = neighbourDepList.findIndex((element) => element.sourceLabel === localElement.localElementParam[0].sourceLabel)
-                if (localElement.localElementParam[0].value > 0) {
-                    if (depIndex === -1 || nextNeighbour.dependencies[depIndex].value < localElement.localElementParam[0].value) {
-                        currentStepArr.push({ neighbourId: nextNeighbour.id, localElementParam: [{ value: localElement.localElementParam[0].value - 1, sourceLabel: localElement.localElementParam[0].sourceLabel }] })
-                    }
-                } else if (localElement.localElementParam[0].value === 0) {
-                    if (depIndex === -1 || nextNeighbour.dependencies[depIndex].value !== 0) {
-                        currentStepArr.push({ neighbourId: nextNeighbour.id, localElementParam: [{ value: 0, sourceLabel: localElement.localElementParam[0].sourceLabel }] })
+            for (let j = 0; j < directions.length; j++) { // Пройдемся по всем направлениям 
+                const row = currentElement.id.row + directions[j].row
+                const col = currentElement.id.column + directions[j].col
+                const lay = currentElement.id.layer + directions[j].lay
+
+                const neighbourElement = routerArray.get(`${row},${col},${lay}`)
+                if (neighbourElement) {
+                    const nextNeighbour = layer[neighbourElement.index]
+                    const neighbourDepList = nextNeighbour.dependencies
+                    const depIndex = neighbourDepList.findIndex((element) => element.sourceLabel === localElement.localElementParam[0].sourceLabel)
+                    if (localElement.localElementParam[0].value > 0) {
+                        if (depIndex === -1 || nextNeighbour.dependencies[depIndex].value < localElement.localElementParam[0].value) {
+                            currentStepArr.push({ neighbourId: nextNeighbour.id, localElementParam: [{ value: localElement.localElementParam[0].value - 1, sourceLabel: localElement.localElementParam[0].sourceLabel }], id: currentElement.id })
+                        }
+                    } else if (localElement.localElementParam[0].value === 0) {
+                        if (depIndex === -1 || nextNeighbour.dependencies[depIndex].value !== 0) {
+                            currentStepArr.push({ neighbourId: nextNeighbour.id, localElementParam: [{ value: 0, sourceLabel: localElement.localElementParam[0].sourceLabel }], id: currentElement.id })
+                        }
                     }
                 }
             }
+        } else if (currentElement.type === "si") {
+            
         }
     }
 

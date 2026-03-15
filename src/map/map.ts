@@ -27,6 +27,15 @@ export const source: {
                 column: 0,
                 layer: 0,
             },
+        },
+        {
+            label: "A3",
+            value: 0,
+            id: {
+                row: 35,
+                column: 0,
+                layer: 0,
+            },
         }
     ] // массив источников сигнала
 
@@ -55,7 +64,7 @@ for (let i = 0; i < 20; i++) {
 for (let i = 0; i < 20; i++) {
     layer.push({
         type: "metal",
-        dependencies: [{ value: 0, sourceLabel: "A1" }, { value: 0, sourceLabel: "A2" }],
+        dependencies: [],
         id: {
             row: 50,
             column: 1 + i,
@@ -77,7 +86,7 @@ for (let i = 0; i < 20; i++) {
 for (let i = 0; i < 50; i++) {
     layer.push({
         type: "metal",
-        dependencies: [{ value: 0, sourceLabel: "A1" }, { value: 0, sourceLabel: "A2" }],
+        dependencies: [],
         id: {
             row: 10 + i,
             column: 21,
@@ -99,7 +108,7 @@ for (let i = 0; i < 50; i++) {
 for (let i = 0; i < 20; i++) {
     layer.push({
         type: "metal",
-        dependencies: [{ value: 0, sourceLabel: "A1" }, { value: 0, sourceLabel: "A2" }],
+        dependencies: [],
         id: {
             row: 35,
             column: 22 + i,
@@ -114,6 +123,75 @@ for (let i = 0; i < 20; i++) {
                 row: 35,
                 column: 22 + i,
                 layer: 0,
+            },
+        })
+}
+
+
+for (let i = 0; i < 10; i++) {
+    layer.push({
+        type: "metal",
+        dependencies: [],
+        id: {
+            row: 35,
+            column: 1 + i,
+            layer: 0,
+        },
+    })
+
+
+    routerArray.set(`${35},${1 + i},${0}`,
+        {
+            index: routerArray.size,
+            id: {
+                row: 35,
+                column: 1 + i,
+                layer: 0,
+            },
+        })
+}
+
+for (let i = 0; i < 2; i++) {
+    layer.push({
+        type: "metal",
+        dependencies: [],
+        id: {
+            row: 35,
+            column: 9,
+            layer: 1 + i,
+        },
+    })
+
+    routerArray.set(`${35},${9},${1 + i}`,
+        {
+            index: routerArray.size,
+            id: {
+                row: 35,
+                column: 9,
+                layer: 1 + i,
+            },
+        })
+}
+
+for (let i = 0; i < 7; i++) {
+    layer.push({
+        type: "metal",
+        dependencies: [],
+        id: {
+            row: 35,
+            column: 10 + i,
+            layer: 2,
+        },
+    })
+
+
+    routerArray.set(`${35},${10 + i},${2}`,
+        {
+            index: routerArray.size,
+            id: {
+                row: 35,
+                column: 10 + i,
+                layer: 2,
             },
         })
 }

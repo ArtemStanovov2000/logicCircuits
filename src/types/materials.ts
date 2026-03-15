@@ -15,4 +15,10 @@ export type Metal = {
   id: Id
 }
 
-export type Layer = Metal[]
+export type Si = {
+  type: "si"
+  dependencies: Dependencie[]
+  id: Id
+}
+
+export type Layer = Array<Metal | Si>
